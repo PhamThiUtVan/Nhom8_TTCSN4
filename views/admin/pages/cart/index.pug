@@ -1,0 +1,42 @@
+extends ../../layout/index.pug
+block main
+  - if (messages.update)
+    .message.update
+      .alert.alert-success(
+    show-alert
+    data-time = "5000") #{messages.update}
+
+  - if (messages.delete)
+    .message.delete
+      .alert.alert-danger(
+    show-alert
+    data-time = "5000") #{messages.delete}
+  h1 #{titlePage}
+  .card 
+    .card-body   
+        h3
+          .badge.badge-secondary List of carts
+        table.table.table-hover.table-sm 
+          thead
+            tr 
+              th Index
+              th Name
+              th Phone
+              th Address 
+              th Status
+          tbody 
+            each item, index in cart 
+              tr 
+                td #{index+1}
+                td #{item.userInfor.name}
+                td #{item.userInfor.phone}
+                td #{item.userInfor.address}
+                - if(item.status == "shipping")
+                    td
+                        .badge.badge-success #{item.status.toUpperCase()}
+                - else 
+                    td 
+                        .badge.badge-warning #{item.status.toUpperCase()}
+
+
+

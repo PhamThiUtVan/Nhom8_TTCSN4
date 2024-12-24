@@ -1,0 +1,29 @@
+extends ../../layout/login.pug
+block main
+    - if (messages.update)
+        .message.update
+        .alert.alert-success(
+        show-alert
+        data-time = "5000") #{messages.update}
+
+    - if (messages.delete)
+        .message.delete
+        .alert.alert-danger(
+        show-alert
+        data-time = "5000") #{messages.delete}
+    
+    form.form-login(
+        method='POST'
+        action='/auth/login'
+    )   
+        img(src='https://product.hstatic.net/200000551679/product/8936104220537-content2_97481bdebf514a56ade85f41c58733e3_1024x1024.jpg')
+        div.form-group 
+            label(for='phone') Số điện thoại  
+            input.form-control#email(type='text' name='phone')
+        div.form-group 
+            label(for='pass') Mật khẩu 
+            input.form-control#pass(type='password' name='password')
+        .signup.mb-3
+            a(href='signUp') Bạn chưa có tài khoản? Tạo ngay
+        button.btn.btn-primary Đăng nhập
+        //- aa

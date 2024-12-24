@@ -1,0 +1,13 @@
+extends ../../layout/login.pug
+block main
+    form(action="/auth/register" method="POST")
+        .form-group
+            label(for="fullName") Họ và tên
+            input#fullName.form-control(type="text" name="fullName" placeholder="Nhập họ và tên" required)
+        .form-group
+            label(for="password") Mật khẩu
+            input#password.form-control(type="password" name="password" placeholder="Nhập mật khẩu" required)
+        .form-group
+            label(for="phone") Số điện thoại
+            input#phone.form-control(type="text" name="phone" placeholder="Nhập số điện thoại" required)
+        button.btn.btn-primary(type="submit") Đăng ký

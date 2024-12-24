@@ -1,0 +1,18 @@
+.top-bar Tận hưởng giao hàng miễn phí toàn quốc với hoá đơn từ 99.000 đ
+
+header.header 
+  .container
+    nav(class="navbar navbar-expand-lg navbar-light bg-light")
+      a.navbar-brand(href="#")
+        img(src="https://cdn.vectorstock.com/i/1000v/38/13/letter-m-logo-on-white-alphabet-background-vector-21803813.jpg", width="30", height="30", alt="")
+      
+      a.nav-link(href="/") Trang chủ
+      a.nav-link(href="/product") Sản phẩm
+      
+      a(href='/cart/view/pay')
+        i(class="fa-solid fa-cart-shopping")
+
+      if token == ""
+        a.nav-link(href="/auth/login") Đăng nhập
+      else
+        a.nav-link(href="/auth/logout") Đăng xuất

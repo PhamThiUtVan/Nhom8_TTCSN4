@@ -1,0 +1,132 @@
+extends ../../layout/index.pug
+block main
+  - if (messages.update)
+    .message.update
+      .alert.alert-success(
+    show-alert
+    data-time = "5000") #{messages.update}
+
+  - if (messages.delete)
+    .message.delete
+      .alert.alert-danger(
+    show-alert
+    data-time = "5000") #{messages.delete}
+  .card
+    .row
+      .col-6
+        ul.list-group.list-group-flush
+          each item in statusFilterBtn
+            li.list-group-item
+              button(class= `${item.class}` btn-status=`${item.status}`) #{item.text}
+      .col-6.mt-4
+        form.input-group-prepend#searchForm
+          div.input-group(style="height: 50px;")
+            input.form-control.rounded#searchTxt(placeholder="Search..." aria-label="Search" value=searchKey style="height: 100%;")
+            div.input-group-append
+              button.btn.btn-outline-secondary#searchBtn(type='submit' style="height: 100%;") Search
+        if(permission.indexOf('create-product')!=-1)
+          a.btn.btn-success.mt-5.ml-5(href="/admin/product/create") + Create new product
+  .card 
+    .card-body   
+      form(
+        action ='/admin/product/multi-change?_method=PATCH',
+        method = 'POST'
+      )
+        .row
+          .col-4
+            .form-group
+              select(class="form-control" id="type" name='type')
+                option(value='active') Active
+                option(value='inactive') Inactive
+          .col-4
+            .form-group
+              input(
+                id = 'txtIds'
+                type='text',
+                name='ids',
+                value='',
+                class='form-control'
+              )
+          .col-4
+            button(type='submit' class='btn btn-primary') Save
+        h3
+          .badge.badge-info List products 
+        table.table.table-hover.table-sm 
+          thead
+            tr 
+              th 
+                input(type="checkbox" id="checkAll" name="checkAll")
+              th Index
+              th Thumbnail
+              th Title
+              th Old price
+              th Discount
+              th New price
+              th Status
+              th Actions
+            tbody 
+            each item , index in products 
+              tr 
+                td 
+                  input(type="checkbox" id="checkOne" name="checkOne" data-id = item.id)
+
+                td #{index+1}
+                td 
+                  img(src= `${item.thumbnail}`
+                  alt = `Sản phẩm ${index}`
+                  width='100px'
+                  heigh='auto'
+                  )
+                td.inner-priceOld  #{item.tittle} 
+                td  #{item.price.toLocaleString('vi-VN')}đ
+                td  #{item.discountPercentage}%
+                td  #{(Number((item.price - item.price * item.discountPercentage * 0.01).toFixed(0))).toLocaleString('vi-VN')}đ
+
+                td 
+                  if(permission.indexOf('edit-product')!=-1)
+                    if(item.status=='active')
+                      a(href='#', data-status = item.status, data-id = item.id, button-change-status, class='badge badge-success') Active
+                    else
+                      a(href='#', data-status = item.status, data-id = item.id, button-change-status, class='badge badge-danger') Inactive
+                td  
+                  a(href=`/admin/product/info/${item.id}` class='btn btn-info btn-sm mr-1' data-id = item.id button-edit-item) View
+                  if(permission.indexOf('edit-product')!=-1)
+                    a(class='btn btn-warning btn-sm' data-id = item.id button-edit-item href=`/admin/product/edit/${item.id}`) Edit
+                  if(permission.indexOf('delete-product')!=-1)
+                    button(class='btn btn-danger btn-sm ml-1' data-toggle="modal" data-target="#staticBackdrop" data-id = item.id  button-delete-item-step1) Delete
+                    .modal.fade#staticBackdrop(data-backdrop="static", data-keyboard="false", tabindex="-1", aria-labelledby="staticBackdropLabel", aria-hidden="true")
+                      .modal-dialog.modal-dialog-centered
+                        .modal-content
+                          .modal-header
+                            h5.modal-title#staticBackdropLabel DANGER ACTION
+                            button.close(type="button", data-dismiss="modal", aria-label="Close")
+                              span(aria-hidden="true") &times;
+                          .modal-body
+                            p Are you sure you want to delete this product?
+                          .modal-footer
+                            button.btn.btn-secondary(type="button", data-dismiss="modal") Cancel
+                            button.btn.btn-danger(type="button" button-delete-item-step2) Delete
+  nav(aria-label="Page navigation example")
+  ul.pagination
+    -for(var i = 1; i <= count; i++)
+      -if(i==currentPage)
+        li.page-item.active
+          div.page-link#pageBtn #{i}
+      - else
+        li.page-item
+          div.page-link#pageBtn #{i}
+
+
+  form(
+    action=''
+    method="POST",
+    id='form-change-status',
+    raw-path='/admin/product/changeStatus'
+  )   
+  form(
+    action=''
+    method="POST",
+    id='form-delete-item',
+    raw-path='/admin/product/delete'
+  ) 
+    

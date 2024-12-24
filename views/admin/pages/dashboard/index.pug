@@ -1,0 +1,134 @@
+extends ../../layout/index.pug
+block main
+  link(href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200", rel="stylesheet")
+  link(href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css", rel="stylesheet")
+  link(href="/assets/css/bootstrap.min.css", rel="stylesheet")
+  link(href="/assets/css/paper-dashboard.css?v=2.0.1", rel="stylesheet")
+  link(href="/assets/demo/demo.css", rel="stylesheet")
+  
+  body
+    .wrapper
+      .main-panel
+        .content
+          .row
+            .col-lg-3.col-md-6.col-sm-6
+              .card.card-stats
+                .card-body
+                  .row
+                    .col-5.col-md-4
+                      .icon-big.text-center.icon-warning
+                        i(class="nc-icon nc-globe text-warning")
+                    .col-7.col-md-8
+                      .numbers
+                        p.card-category Capacity
+                        p.card-title 150GB
+                .card-footer
+                  hr
+                  .stats
+                    i(class="fa fa-refresh") Update Now
+            .col-lg-3.col-md-6.col-sm-6
+              .card.card-stats
+                .card-body
+                  .row
+                    .col-5.col-md-4
+                      .icon-big.text-center.icon-warning
+                        i(class="nc-icon nc-money-coins text-success")
+                    .col-7.col-md-8
+                      .numbers
+                        p.card-category Revenue
+                        p.card-title $ 1,345
+                .card-footer
+                  hr
+                  .stats
+                    i(class="fa fa-calendar-o") Last day
+            .col-lg-3.col-md-6.col-sm-6
+              .card.card-stats
+                .card-body
+                  .row
+                    .col-5.col-md-4
+                      .icon-big.text-center.icon-warning
+                        i(class="nc-icon nc-vector text-danger")
+                    .col-7.col-md-8
+                      .numbers
+                        p.card-category Errors
+                        p.card-title 23
+                .card-footer
+                  hr
+                  .stats
+                    i(class="fa fa-clock-o") In the last hour
+            .col-lg-3.col-md-6.col-sm-6
+              .card.card-stats
+                .card-body
+                  .row
+                    .col-5.col-md-4
+                      .icon-big.text-center.icon-warning
+                        i(class="nc-icon nc-favourite-28 text-primary")
+                    .col-7.col-md-8
+                      .numbers
+                        p.card-category Followers
+                        p.card-title +45K
+                .card-footer
+                  hr
+                  .stats
+                    i(class="fa fa-refresh") Update now
+
+          .row
+            .col-md-12
+              .card
+                .card-header
+                  h5.card-title Users Behavior
+                  p.card-category 24 Hours performance
+                .card-body
+                  img(src='/img/chart1.png')
+                .card-footer
+                  hr
+                  .stats
+                    i(class="fa fa-history") Updated 3 minutes ago
+
+          .row
+            .col-md-4
+              .card
+                .card-header
+                  h5.card-title Email Statistics
+                  p.card-category Last Campaign Performance
+                .card-body
+                  img(src='/img/chart2.png')
+                .card-footer
+                  .legend
+                    i(class="fa fa-circle text-primary") Opened
+                    i(class="fa fa-circle text-warning") Read
+                    i(class="fa fa-circle text-danger") Deleted
+                    i(class="fa fa-circle text-gray") Unopened
+                  hr
+                  .stats
+                    i(class="fa fa-calendar") Number of emails sent
+            .col-md-8
+              .card.card-chart
+                .card-header
+                  h5.card-title NASDAQ: AAPL
+                  p.card-category Line Chart with Points
+                .card-body
+                  img(src='/img/chart3.png')
+                .card-footer
+                  .chart-legend
+                    i(class="fa fa-circle text-info") Tesla Model S
+                    i(class="fa fa-circle text-warning") BMW 5 Series
+                  hr
+                  .card-stats
+                    i(class="fa fa-check") Data information certified
+
+        footer.footer.footer-black.footer-white
+          .container-fluid
+            .row
+              nav.footer-nav
+                ul
+                  li
+                    a(href="https://www.creative-tim.com", target="_blank") Creative Tim
+                  li
+                    a(href="https://www.creative-tim.com/blog", target="_blank") Blog
+                  li
+                    a(href="https://www.creative-tim.com/license", target="_blank") Licenses
+
+
+    //- Core JS Files
+

@@ -1,0 +1,17 @@
+extends ../../layout/index.pug
+include ../../mixins/box-head.pug
+block main
+  +box-head("Trang chủ")
+
+  section.hero
+    .hero-content
+      .hero-image
+        img(src="https://image.cocoonvietnam.com/uploads/Website_Banner_vuong_45cd125572.png", alt="11.11 Sale Products")
+      .hero-text
+        p.sale-info MUA 1 TẶNG 1 TỪ 9-12/11
+        h1 Đại tiệc sale 11.11
+        p Mừng đại tiệc sale 11.11, Cocoon chiêu đãi bạn ngay bàn tiệc thuần chay với những “món” cực kỳ hấp dẫn. Đừng bỏ lỡ cơ hội săn ưu đãi hấp dẫn và chăm sóc làn da của bạn cùng Cocoon
+        a.btn(href="#") Xem thêm
+
+    script(src="script.js")
+  

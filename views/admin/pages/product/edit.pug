@@ -1,0 +1,51 @@
+extends ../../layout/index.pug
+block main
+  - if (messages.update)
+    .message.update
+      .alert.alert-success(
+    show-alert
+    data-time = "5000") #{messages.update}
+  .card.border-primary.ml-5(style="width: 30rem")
+    img.card-img-top(src=`${product.thumbnail}` alt="...")
+    .card-body
+      table.table.table-bordered
+        form( id='editForm' method="POST" enctype="multipart/form-data") 
+          tr 
+            td Thumbnail
+            td 
+              input(type='file', id='thumbnail', class="form-control-file", name='thumbnail', accept='image/*', required)
+          tr 
+            td Title
+            td 
+              input.form-control(type='text' value=product.tittle name='tittle')
+          tr 
+            td Description
+            td 
+              input.form-control(type='text' value=product.description name='description')
+          tr 
+            td Price
+            td 
+              input.form-control(type='text' value=product.price name='price') 
+              
+          tr 
+            td Discount
+            td 
+              input.form-control(type='text' value=product.discountPercentage name='discountPercentage') 
+          tr 
+            td Stock
+            td 
+              input.form-control(type='text' value=product.stock name='stock') 
+          tr 
+            td Status
+            td 
+              .form-check
+                input.mr-1.form-check-input(type="radio" value='active' name='status' id='active' checked)  
+                label.mr-2.form-check-label(for="active") Active 
+              .form-check
+                input.mr-1.form-check-input(type="radio" value='inactive' name='status' id='inactive' )
+                label.form-check-label(for="inactive") Inactive
+          tr  
+            td(colspan="2")
+              button.btn.btn-primary(id='submitBtn' product-id=product.id type='button') Save
+              button.btn.btn-danger.ml-2(type='button' id='cancelBtn') Cancel
+
